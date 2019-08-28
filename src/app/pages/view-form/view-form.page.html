@@ -1,0 +1,57 @@
+<app-header nombre="View Form"></app-header>
+
+<ion-content>
+
+  <ion-grid>
+
+      <app-banner area="{{ areaForm }}"></app-banner>
+      
+      <ion-row>
+        <ion-col size="12" size-lg="3" size-md="4" size-sm="8" size-xs="12" *ngFor="let pregunta of preguntas">
+
+          <ion-card [color]="pregunta.color">
+            
+            <ion-card-subtitle class="ion-text-center" *ngIf="pregunta.img.length != 0"> 
+              <ion-icon name="arrow-round-down"></ion-icon> 
+              Click image to <b> View Detail </b> 
+              <ion-icon name="arrow-round-down"></ion-icon>  
+            </ion-card-subtitle>
+
+            <ion-slides pager="true" *ngIf="pregunta.img.length > 1" >
+              <ion-slide  class="image-slide"
+                          [style]="(img | imagen: idUsuarioForm) | domSanitizer"
+                          *ngFor="let img of pregunta.img" 
+                          (click)="verImg(img)">
+              </ion-slide>
+            </ion-slides>
+
+            <ion-slides *ngIf="pregunta.img.length === 1" >
+              <ion-slide  class="image-slide"
+                          [style]="(pregunta.img[0] | imagen: idUsuarioForm) | domSanitizer" 
+                          (click)="verImg(pregunta.img[0])">
+              </ion-slide>
+            </ion-slides>
+
+            <ion-slides *ngIf="pregunta.img.length === 0" >
+              <ion-slide  class="image-slide"
+                          [style]="imgNotAvailableUrl | domSanitizer">
+              </ion-slide>
+            </ion-slides>
+            
+
+            <ion-card-header >
+              <ion-card-title text-wrap >{{ pregunta.texto }}</ion-card-title>
+            </ion-card-header>
+
+              <ion-card-content>
+                {{ pregunta.comentario }}
+              </ion-card-content>
+          </ion-card>
+
+        </ion-col>
+
+      </ion-row>
+        
+  </ion-grid>
+
+</ion-content>

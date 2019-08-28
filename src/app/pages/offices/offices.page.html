@@ -1,0 +1,164 @@
+
+<app-header nombre="New Form - Offices"></app-header>
+
+
+<ion-content>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <img src="../assets/iconos-areas/Banner-{{ form.area }}.jpg" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col size="12" size-lg="6" size-md="6" size-sm="12" size-xs="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title color="warning">
+              Required clothing and PPE
+            </ion-card-title>
+          </ion-card-header>
+          <ion-img [src]="imgAvatar"> </ion-img>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-lg="6" size-md="6" size-sm="12" size-xs="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title color="danger"> Threats to the Area </ion-card-title>
+            <ion-card-subtitle> Be careful with these threats </ion-card-subtitle>
+          </ion-card-header>
+          <ion-row>
+            <ion-col size="3">
+              <ion-img src="../assets/amenazas-area/Lighting.jpg"></ion-img>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img
+                src="../assets/amenazas-area/optical radiation.jpg"
+              ></ion-img>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img
+                src="../assets/amenazas-area/electric shock.jpg"
+              >
+              </ion-img>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../assets/amenazas-area/sharp edges, protruding device elements.jpg">
+              </ion-img>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">
+              <ion-img src="../assets/amenazas-area/falling-or-slipping-on-a-smooth-or-uneven-surface.jpg"> </ion-img>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../assets/amenazas-area/falling objects.jpg">
+              </ion-img>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../assets/amenazas-area/fall during the execution of transport work.jpg"> </ion-img>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../assets/amenazas-area/moving means of transport.jpg"> </ion-img>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">
+              <ion-img
+                src="../assets/amenazas-area/support for screen monitors.jpg"
+              >
+              </ion-img>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img
+                src="../assets/amenazas-area/load on the musculoskeletal system.jpg"
+              >
+              </ion-img>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../assets/amenazas-area/position at work.jpg">
+              </ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  
+    <ion-card>
+  
+  
+      <ion-slides #slideOffices>
+        <ion-slide *ngFor="let pregunta of preguntas" >
+  
+         
+            <ion-row >
+                <ion-col size="12" size-lg="12" size-md="12" size-sm="12" size-xs="12">
+                  <ion-item lines="none">
+                    <ion-label text-wrap color="primary"> <b> {{ pregunta.texto }} <ion-badge color="primary">?</ion-badge> </b> </ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12" size-lg="12" size-md="12" size-sm="12" size-xs="12" class="col">
+                  <ion-item  lines="none" [color]="pregunta.color" >
+                      <ion-label>Option</ion-label>
+                      <ion-select [disabled]="isEnd" placeholder="Select One" interface="popover" (ionChange)="checkValue($event.detail.value, pregunta)" >
+                        <ion-select-option color="success" value="yes">Yes</ion-select-option>
+                        <ion-select-option color="danger" value="no">No</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="12" size-lg="12" size-md="12" size-sm="12" size-xs="12" class="col" >
+                  <ion-button [disabled]="isEnd" shape="round"  (click)="camara(pregunta)" color="iturri">
+                    Take Photo
+                    <ion-icon name="camera" ></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col size="12" size-lg="12" size-md="12" size-sm="12" size-xs="12" class="col">
+                  <ion-label color="primary" > <b>Comments</b> </ion-label>
+                  <ion-textarea [disabled]="isEnd"
+                    [(ngModel)]="pregunta.comentario"
+                    placeholder="Enter any comments here..."
+                  ></ion-textarea>
+                </ion-col>
+  
+                <ion-col size="6" >
+                  </ion-col>
+                <ion-col size="6" *ngIf="!isEnd">
+                  <ion-button expand="full"  shape="round" (click)="next( pregunta )" color="success" >
+                    Next
+                    <ion-icon name="arrow-forward"></ion-icon>&nbsp;
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            
+  
+        </ion-slide>
+  
+      </ion-slides>
+      
+      <ion-row>
+        <ion-col size="12">
+          <ion-button color="success" expand="full" shape="round" (click)="finish()" [disabled]="!preguntasOk" *ngIf="preguntasOk && isEnd" >
+              <ion-icon name="save" ></ion-icon>&nbsp;
+              Save Form
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title color="primary">
+              Upload Images
+            </ion-card-title>
+          </ion-card-header>
+        <ion-row>
+            <ion-col size="2" *ngFor="let image of tempImages">
+              <ion-card>
+                <img [src]="image | imageSanitizer" />
+              </ion-card>
+            </ion-col>
+          </ion-row>
+    </ion-card>
+    
+  </ion-content>

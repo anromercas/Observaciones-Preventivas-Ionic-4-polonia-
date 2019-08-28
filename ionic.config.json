@@ -1,5 +1,7 @@
 {
   "name": "preventive-observation-iturri",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

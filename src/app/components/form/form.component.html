@@ -1,0 +1,38 @@
+<div class="form">
+  <ion-item lines="none">
+    <ion-avatar slot="start">
+      <img src="/assets/avatars/{{ form.usuario.avatar }}" />
+    </ion-avatar>
+
+    <ion-label>
+      <h3 text-wrap>{{ form.usuario.nombre }}</h3>
+      <h5 text-wrap>{{ form.usuario.email }}</h5>
+    </ion-label>
+  </ion-item>
+
+
+  <ion-slides pager="false" [options]="slideSoloOpts">
+    <ion-slide class="image-slide" *ngIf="form.area==='Production'"
+                [style]="imgProduction | domSanitizer">
+    </ion-slide>
+    <ion-slide class="image-slide" *ngIf="form.area==='Magazine'"
+                [style]="imgMagazine | domSanitizer">
+    </ion-slide>
+    <ion-slide class="image-slide" *ngIf="form.area==='Services'"
+                [style]="imgServices | domSanitizer">
+    </ion-slide>
+    <ion-slide class="image-slide" *ngIf="form.area==='Offices'"
+                [style]="imgOffices | domSanitizer">
+    </ion-slide>
+  </ion-slides> 
+
+  <ion-item lines="none">
+    <ion-label text-wrap>
+      Created: <b>{{ form.created | date: 'dd/MM/yyyy' }}</b>
+    </ion-label>
+  </ion-item>
+
+  <ion-button expand="full"  shape="round" color="iturri" fill="outline" (click)="viewForm(form._id)" > 
+      <ion-icon slot="end" name="eye"></ion-icon> View Form
+  </ion-button>
+</div>
