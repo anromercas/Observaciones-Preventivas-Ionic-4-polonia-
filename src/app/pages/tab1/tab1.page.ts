@@ -14,6 +14,11 @@ export class Tab1Page implements OnInit{
 
   habilitado = true;
 
+  sliderOpts = {
+    allowSlidePrev: false,
+    allowSlideNext: false
+  };
+
   constructor( private formsService: FormsService ) {}
 
   ngOnInit() {

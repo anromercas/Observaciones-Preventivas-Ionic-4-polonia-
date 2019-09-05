@@ -9,7 +9,17 @@
 </ion-refresher>
 
 <!-- Forms -->
-<app-forms [forms]="forms" [preguntas]="preguntas"></app-forms>
+<app-forms  *ngIf="forms.length > 0" 
+            [forms]="forms" [preguntas]="preguntas"></app-forms>
+
+<ion-slides *ngIf="forms.length === 0" [options]="sliderOpts">
+  <ion-slide>
+    <ion-label>
+      <b>There is nothing here! </b> <br> Try creating a new Form<br>
+      <img src="../../../assets/avion.gif" alt="">
+    </ion-label>    
+  </ion-slide>
+</ion-slides>
 
 <!-- Infinite scroll -->
 <ion-infinite-scroll [disabled] ="!habilitado" threshold="150px" (ionInfinite)="siguientes($event)">

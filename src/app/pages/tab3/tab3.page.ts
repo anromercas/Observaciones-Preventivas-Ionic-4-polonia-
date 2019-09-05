@@ -33,10 +33,10 @@ export class Tab3Page implements OnInit {
 
     if( actualizado ) {
       // toast con el mensaje de actualizado
-      this.uiService.presentToast( 'Registro actualizado' );
+      this.uiService.presentToast( 'updated user' );
     } else {
       // toast con el error
-      this.uiService.presentToast( 'No se pudo actualizar' );
+      this.uiService.presentToast( 'Could not update user' );
 
     }
 

@@ -15,14 +15,14 @@ export class LoginPage implements OnInit {
   @ViewChild('slidePrincipal') slides: IonSlides;
 
   loginUser = {
-    email: 'nuria@mail.com',
+    email: 'user@mail.com',
     password: '1234'
   };
 
   registerUser: Usuario = {
-    email: 'test',
-    password: '1234',
-    nombre: 'Test',
+    email: '',
+    password: '',
+    nombre: '',
     avatar: 'av-1.png'
   };
 

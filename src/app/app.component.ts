@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, AfterViewInit } from '@angular/core';
 
 import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -16,7 +16,7 @@ import { ServicesPage } from './pages/services/services.page';
   templateUrl: 'app.component.html'
 })
 
-export class AppComponent implements PuedeDesactivar {
+export class AppComponent implements  OnDestroy, AfterViewInit {
 
   backButtonSubscription;
 
@@ -26,10 +26,6 @@ export class AppComponent implements PuedeDesactivar {
     private statusBar: StatusBar,
     private router: Router,
     private navCtrl: NavController,
-    private offices: OfficesPage,
-    private magazine: MagazinePage,
-    private production: ProductionPage,
-    private services: ServicesPage
   ) {
     this.initializeApp();
 
@@ -59,53 +55,5 @@ export class AppComponent implements PuedeDesactivar {
     this.backButtonSubscription.unsubscribe();
   }
 
-  permitirSalirDeRuta(): boolean | Promise<boolean> | import('rxjs').Observable<boolean> {
-
-    switch (this.router.url) {
-      case '/production':
-        console.log('procuction desde app component');
-        if ( this.production.isEnd ) {
-          return true;
-        }
-      break;
-
-      case '/magazine':
-        console.log('magazine desde app component');
-        if ( this.magazine.isEnd ) {
-          return true;
-        }
-      break;
-
-      case '/services':
-        console.log('services desde app component');
-        if ( this.services.isEnd ) {
-          return true;
-        }
-      break;
-
-      case '/offices':
-        console.log('offices desde app component');
-        if ( this.offices.isEnd ) {
-          return true;
-        }
-      break;
-
-      case '/main/tabs/tab1':
-        
-      break;
-
-      case '/main/tabs/tab2':
-        navigator['app'].exitApp();
-      break;
-
-      case '/main/tabs/tab3':
-        navigator['app'].exitApp();
-      break;
-
-    }
-
-    const confirmacion = window.confirm( 'Will lose this data. Are you sure?');
-    return confirmacion;
-  }
 
 }

@@ -63,6 +63,7 @@ export class OfficesPage implements OnInit, PuedeDesactivar {
     const confirmacion = window.confirm( 'Will lose this data. Are you sure?');
     if (confirmacion) {
       this.formService.borrarUltimo();
+      this.resetForm();
     }
     return confirmacion;
   }
