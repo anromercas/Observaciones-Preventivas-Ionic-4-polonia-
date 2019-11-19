@@ -15,10 +15,10 @@ import { AppComponent } from './app.component';
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
-import { ProductionPage } from './pages/production/production.page';
-import { OfficesPage } from './pages/offices/offices.page';
-import { MagazinePage } from './pages/magazine/magazine.page';
-import { ServicesPage } from './pages/services/services.page';
+import { ProductionPage } from './pages/polonia/production/production.page';
+import { OfficesPage } from './pages/polonia/offices/offices.page';
+import { MagazinePage } from './pages/polonia/magazine/magazine.page';
+import { ServicesPage } from './pages/polonia/services/services.page';
 
 
 @NgModule({

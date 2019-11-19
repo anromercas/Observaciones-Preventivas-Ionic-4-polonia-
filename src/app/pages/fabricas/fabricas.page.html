@@ -1,0 +1,42 @@
+<ion-header no-border translucent>
+        <ion-toolbar>
+            <ion-buttons slot="start" color="iturri">
+                <ion-back-button defaultHref="/"></ion-back-button>
+            </ion-buttons>
+            <ion-img
+                src="../../assets/logo-iturri.png"
+                class="logo-iturri"
+                slot="start">
+            </ion-img>
+            <ion-title>
+                Factories
+            </ion-title>
+        </ion-toolbar>
+      
+        <ion-segment  scrollable 
+                      mode="md" 
+                      color="primary" 
+                      (ionChange)="cambioCategoria( $event )">
+          <ion-segment-button mode="md" 
+                              value="factoryList" >
+            <ion-label text-capitalize> Factory List </ion-label>
+          </ion-segment-button>
+          <ion-segment-button mode="md" 
+                              value="userHistory">
+            <ion-label text-capitalize> User History </ion-label>
+          </ion-segment-button>
+          <ion-segment-button>
+                <div class="noticia-more">
+                    <ion-button fill="clear" (click)="lanzarMenu()">
+                        <ion-icon slot="icon-only" name="more"></ion-icon>
+                    </ion-button>
+                </div>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-header>
+
+<ion-content>
+
+    <app-factories [factories]="factories" *ngIf="mostrarFakeFactories" ></app-factories>
+
+</ion-content>

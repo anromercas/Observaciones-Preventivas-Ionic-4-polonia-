@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/pages/interfaces/interfaces';
-import { UsuarioService } from '../../services/usuario.service';
-import { NgForm } from '@angular/forms';
-import { UiServiceService } from '../../services/ui-service.service';
-import { FormsService } from '../../services/forms.service';
+import { ViewQuestionPage } from '../view-question/view-question.page';
+import { ModalController } from '@ionic/angular';
+import { INFO } from '../../data/polonia/data.info';
 
 @Component({
   selector: 'app-tab3',
@@ -14,42 +13,29 @@ export class Tab3Page implements OnInit {
 
 
   usuario: Usuario = {};
+  info: any[] = [];
 
-  constructor( private usuarioService: UsuarioService,
-               private uiService: UiServiceService,
-               private formsService: FormsService) {}
+  constructor( private modalCtrl: ModalController,) {
+                this.info = INFO;
+               }
 
   ngOnInit() {
-    this.usuario = this.usuarioService.getUsuario();
-
   }
 
-  async actualizar( fActualizar: NgForm ) {
-
-    if( fActualizar.invalid ) { return; }
-
-    const actualizado = await this.usuarioService.actualizarUsuario( this.usuario );
-    console.log(actualizado);
-
-    if( actualizado ) {
-      // toast con el mensaje de actualizado
-      this.uiService.presentToast( 'updated user' );
-    } else {
-      // toast con el error
-      this.uiService.presentToast( 'Could not update user' );
-
-    }
-
+  mostrarImg() {
+    console.log('mostrar img');
   }
 
+  async verImg( img: string ) {
+    console.log(img);
 
+    const modal = await this.modalCtrl.create({
+      component: ViewQuestionPage,
+      componentProps: {
+        'img': img
+      }
+    });
 
-  logout() {
-
-    this.formsService.paginaForms = 0;
-
-    this.usuarioService.logout();
-
+    await modal.present();
   }
-
 }

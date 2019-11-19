@@ -4,6 +4,7 @@ import { IonSlides, NavController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { UiServiceService } from '../../services/ui-service.service';
 import { Usuario } from 'src/app/pages/interfaces/interfaces';
+import { USERSREGISTER } from '../../data/polonia/data.usersForRegister';
 
 @Component({
   selector: 'app-login',
@@ -23,8 +24,11 @@ export class LoginPage implements OnInit {
     email: '',
     password: '',
     nombre: '',
-    avatar: 'av-1.png'
+    avatar: 'av-1.png',
+    fabrica: null
   };
+
+  usersRegister: Usuario[] = [];
 
   constructor( private usuarioService: UsuarioService,
                private navCtrl: NavController,
@@ -32,6 +36,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.slides.lockSwipes(true);
+
+    this.usersRegister = USERSREGISTER;
   }
 
   async login(fLogin: NgForm) {
@@ -41,7 +47,9 @@ export class LoginPage implements OnInit {
 
     if ( valido ) {
       // navegar al tabs
-      this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );
+    //  this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );
+        this.navCtrl.navigateRoot( '/fabricas', { animated: true } );
+
     } else {
       // mostrar alerta de usuario y pass no correctos
       this.uiService.alertaInformativa('Usuario y contraseña no son correctos.');
@@ -50,15 +58,25 @@ export class LoginPage implements OnInit {
 
   async registro( fRegistro: NgForm ) {
 
-    if ( fRegistro.invalid ) { return; }
+    if ( fRegistro.invalid ) {
+      this.uiService.presentToast('invalid fields');
+      return;
+    }
+
+    this.usersRegister.forEach(user => {
+      if (user.email === this.registerUser.email) {
+        this.registerUser.fabrica = user.fabrica;
+        this.registerUser.idioma = user.idioma;
+      }
+    });
 
     const valido = await this.usuarioService.registro( this.registerUser );
     if ( valido ) {
       // navegar al login
-      this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );
+      this.navCtrl.navigateRoot( '/fabricas', { animated: true } );
     } else {
       // mostrar alerta de usuario y pass no correctos
-      this.uiService.alertaInformativa('El correo electrónico ya existe');
+      this.uiService.alertaInformativa('Invalid User - contact the administrator to create a user with that email');
     }
 
   }

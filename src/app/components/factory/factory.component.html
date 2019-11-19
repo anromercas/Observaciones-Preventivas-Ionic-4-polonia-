@@ -1,0 +1,28 @@
+<div class="form" (click)="viewFactory()">
+
+  <ion-item lines="none">
+    <ion-label>
+      <ion-text color="iturri">
+        <h3 text-wrap>{{ factory.nombre }}</h3>
+      </ion-text>
+      <ion-text color="secondary">
+        <h5 text-wrap>{{ factory.pais }} - {{ factory.ciudad }}</h5>
+      </ion-text>
+    </ion-label>
+  </ion-item>
+
+  <ion-slides pager="false" [options]="slideSoloOpts">
+    <ion-slide class="image-slide" *ngIf="factory.nombre==='Utrera'"
+                [style]="imgUtrera | domSanitizer">
+    </ion-slide>
+    <ion-slide class="image-slide" *ngIf="factory.nombre==='Poland'"
+                [style]="imgPolonia | domSanitizer">
+    </ion-slide>
+   
+  </ion-slides> 
+
+  <ion-button expand="full"  shape="round" color="iturri" fill="outline" (click)="viewFactory()" > 
+      <ion-icon slot="end" name="eye"></ion-icon> View Factory
+  </ion-button>
+
+</div>

@@ -1,80 +1,25 @@
-<ion-header no-border>
-  <ion-toolbar>
-      <ion-buttons slot="start" color="iturri">
-        <ion-back-button defaultHref="/"></ion-back-button>
-      </ion-buttons>
-      <ion-img src="../../assets/logo-iturri.png" class="logo-iturri" slot="start"></ion-img>
-
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()"
-                  color="danger">
-        <ion-icon slot="icon-only" name="exit"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header nombre="Info"></app-header>>
 
 
-<ion-content>
+<ion-content fullscreen>
 
-  <ion-row class="top-20">
-    
-    <ion-col size="12" text-center>
-      <img src="assets/avatars/{{ usuario.avatar }}" class="img-avatar">
-    </ion-col>
+    <ion-list>
+        <ion-item *ngFor="let i of info" >
+          <ion-thumbnail (click)="verImg(i.img)" slot="start">
+            <img [src]="i.img">
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap">
+              <ion-text color="primary">
+                <h1>{{ i.nombre }}</h1>
+              </ion-text>
+              <p>{{i.traduccion }}</p>
+              <ion-text color="iturri">
+                <p>{{ i.explicacion }}</p>
+              </ion-text>
+            </ion-label>
 
-  </ion-row>
-
-  <ion-row class="top-20">
-    <ion-col size="12" text-center>
-      <ion-label>
-        <h1>Update profile</h1>
-      </ion-label>
-    </ion-col>
-  </ion-row>
-
-
-  <app-avatar-selector (avatarSel)="usuario.avatar = $event"
-                      [avatarActual]="usuario.avatar"></app-avatar-selector>
-
-  <form (ngSubmit)="actualizar( fActualizar )" #fActualizar>
-      <ion-row>
-        <ion-col>
-          
-            <ion-list>
-              
-              <ion-item>
-                <ion-label>Email</ion-label>
-                <ion-input name="email"
-                           type="email"
-                           [(ngModel)]="usuario.email"
-                           required></ion-input>
-              </ion-item>
-
-              <ion-item>
-                <ion-label>Nombre</ion-label>
-                <ion-input name="nombre"
-                           type="text"
-                           [(ngModel)]="usuario.nombre"
-                           required></ion-input>
-              </ion-item>
-
-
-            </ion-list>
-        </ion-col>
-      </ion-row>
-      
-      <ion-row>
-        <ion-col text-center>
-          <ion-button type="submit"
-                      color="tertiary"
-                      shape="round">
-          Update
-        </ion-button>
-      </ion-col>
-    </ion-row>
-    
-  </form>
-
+        </ion-item>
+        
+      </ion-list>
 
 </ion-content>

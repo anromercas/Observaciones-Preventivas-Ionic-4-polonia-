@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab3Page } from './tab3.page';
 import { ComponentsModule } from '../../components/components.module';
-import { UiServiceService } from '../../services/ui-service.service';
+import { ViewQuestionPageModule } from '../view-question/view-question.module';
 
 @NgModule({
   imports: [
@@ -13,6 +13,7 @@ import { UiServiceService } from '../../services/ui-service.service';
     CommonModule,
     FormsModule,
     ComponentsModule,
+    ViewQuestionPageModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }])
   ],
   declarations: [Tab3Page]

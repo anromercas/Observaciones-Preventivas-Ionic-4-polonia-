@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { Usuario } from '../pages/interfaces/interfaces';
 import { NavController } from '@ionic/angular';
-import { async } from '@angular/core/testing';
 
 const URL = environment.url;
 
@@ -97,11 +96,11 @@ export class UsuarioService {
     this.token = await this.storage.get('token') || null;
   }
 
-  async validaToken(): Promise<boolean>{
+  async validaToken(): Promise<boolean> {
 
     await this.cargarToken();
 
-    if ( !this.token ){
+    if ( !this.token ) {
       this.navCtrl.navigateRoot('/login');
       return Promise.resolve(false);
     }
@@ -114,7 +113,7 @@ export class UsuarioService {
 
       this.http.get(`${ URL }/user/`, { headers })
           .subscribe( resp => {
-            if( resp['ok'] ) {
+            if ( resp['ok'] ) {
               this.usuario = resp['usuario'];
               resolve(true);
             } else {

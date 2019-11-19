@@ -17,6 +17,7 @@ import { PipesModule } from '../../pipes/pipes.module';
     ComponentsModule,
     PipesModule
   ],
-  declarations: [ViewQuestionPage]
+  declarations: [ViewQuestionPage],
+  exports: [ViewQuestionPage]
 })
 export class ViewQuestionPageModule {}

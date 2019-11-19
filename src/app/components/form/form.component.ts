@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Form, Pregunta } from 'src/app/pages/interfaces/interfaces';
-import { QuestionService } from '../../services/question.service';
+/* import { QuestionService } from '../../services/question.service';
 import { FormsService } from '../../services/forms.service';
-import { NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular'; */
 import { Router } from '@angular/router';
 
 
@@ -28,20 +28,20 @@ export class FormComponent implements OnInit {
 
 //  preguntas: Pregunta[] = [];
 
-  constructor(  private questionService: QuestionService,
+  constructor(  /* private questionService: QuestionService,
                 private formService: FormsService,
-                private navCtrl: NavController,
+                private navCtrl: NavController, */
                 private router: Router ) { }
 
   ngOnInit() {
   //  console.log(this.form.area);
 
-    this.questionService.getQuestionByIdForm(this.form._id)
+    /* this.questionService.getQuestionByIdForm(this.form._id)
                         .subscribe( (resp: any) => {
                           this.preguntas = resp.preguntas;
                           // console.log(this.preguntas);
                         });
-
+ */
   }
 
   viewForm( id: string ) {

@@ -7,17 +7,24 @@ import { PipesModule } from '../pipes/pipes.module';
 import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
 import { HeaderComponent } from './header/header.component';
 import { BannerComponent } from './banner/banner.component';
+import { FactoriesComponent } from './factories/factories.component';
+import { FactoryComponent } from './factory/factory.component';
+import { FakeFactoryComponent } from './fake-factory/fake-factory.component';
 
 @NgModule({
   declarations: [
     FormComponent,
     FormsComponent,
+    FactoriesComponent,
+    FactoryComponent,
+    FakeFactoryComponent,
     HeaderComponent,
     BannerComponent,
     AvatarSelectorComponent
   ],
   exports: [
     FormsComponent,
+    FactoriesComponent,
     HeaderComponent,
     BannerComponent,
     AvatarSelectorComponent

@@ -15,11 +15,13 @@ export interface Form {
   area?: string;
   usuario?: Usuario;
   created?: string;
+  fabrica?: Factory;
 }
 
 export interface Pregunta {
   _id?: string;
   texto?: string;
+  traduccion?: string;
   ok?: boolean;
   img?: string[];
   comentario?: string;
@@ -34,4 +36,13 @@ export interface Usuario {
   nombre?: string;
   email?: string;
   password?: string;
+  fabrica?: string;
+  idioma?: string;
+}
+
+export interface Factory {
+  _id?: string;
+  nombre?: string;
+  pais?: string;
+  ciudad?: string;
 }

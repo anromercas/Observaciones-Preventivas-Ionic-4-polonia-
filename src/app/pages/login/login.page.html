@@ -24,6 +24,7 @@
                       <ion-input name="email"
                                   type="email"
                                   [(ngModel)]="loginUser.email"
+                                  (keydown.enter) ="login(fLogin)"
                                   required></ion-input>
                     </ion-item>
   
@@ -32,7 +33,7 @@
                       <ion-input name="password"
                                   type="password"
                                   [(ngModel)]="loginUser.password"
-
+                                  (keydown.enter) ="login(fLogin)"
                                   required></ion-input>
                     </ion-item>
   
@@ -75,6 +76,7 @@
                               <ion-label>Email</ion-label>
                               <ion-input name="email" 
                                           type="email"
+                                          inputmode="email"
                                           [(ngModel)]="registerUser.email"
                                           required></ion-input>
                               </ion-item>
@@ -83,6 +85,7 @@
                               <ion-label>Name</ion-label>
                               <ion-input name="nombre"
                                           type="text"
+                                          inputmode="text"
                                           [(ngModel)]="registerUser.nombre"
                                           required></ion-input>
                               </ion-item>
@@ -91,19 +94,26 @@
                               <ion-label>Password</ion-label>
                               <ion-input name="password"
                                           type="password"
+                                          inputmode="text"
+                                          pattern="(?=.*[-!#$%&/()?¡_])(?=.*[A-Z])(?=.*[a-z]).{8,}"
                                           [(ngModel)]="registerUser.password"
                                           required></ion-input>
                               </ion-item>
-  
-                          </ion-list>
-                      </ion-col>
-                  </ion-row>
+                            </ion-list>
+                          </ion-col>
+                        </ion-row>
+                        <p>
+                          <ion-text color="danger">
+                            *At least 8 characters, a capital letter, a lowercase letter, a number and a special character
+                          </ion-text>
+                        </p>
                   
                   <ion-row>
                   <ion-col>
                       <ion-button type="submit"
                                   color="tertiary"
-                                  shape="round">
+                                  shape="round"
+                                  [disabled]="fRegistro.invalid">
                           New User
                       </ion-button>
                   </ion-col>

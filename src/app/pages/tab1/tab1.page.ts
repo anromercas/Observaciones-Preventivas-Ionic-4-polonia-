@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsService } from '../../services/forms.service';
 import { Form, Pregunta } from '../interfaces/interfaces';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FactoryService } from '../../services/factory.service';
 
 @Component({
   selector: 'app-tab1',
@@ -12,6 +14,8 @@ export class Tab1Page implements OnInit{
   forms: Form[] = [];
   preguntas: Pregunta[] = [];
 
+  fabrica: string;
+
   habilitado = true;
 
   sliderOpts = {
@@ -19,11 +23,22 @@ export class Tab1Page implements OnInit{
     allowSlideNext: false
   };
 
-  constructor( private formsService: FormsService ) {}
+  constructor(  private formsService: FormsService,
+                private factoryService: FactoryService,
+                private router: Router,
+                private route: ActivatedRoute ) {
+    this.route.queryParams.subscribe( params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        let data = this.router.getCurrentNavigation().extras.state.fabrica;
+        console.log(data);
+        this.factoryService.factory = data;
+        this.fabrica = data._id;
+      }
+    });
+  }
 
   ngOnInit() {
-
-    this.siguientes();
+    this.siguientes(null, true);
 
     this.formsService.nuevoForm
                     .subscribe( form => {
@@ -45,12 +60,12 @@ export class Tab1Page implements OnInit{
 
   siguientes( event?, pull: boolean = false ) {
 
-    this.formsService.getForms( pull )
+    this.formsService.getForms( pull, this.fabrica )
     .subscribe( resp => {
       console.log(resp);
       this.forms.push( ...resp.forms );
 
-      if( event ) {
+      if ( event ) {
         event.target.complete();
         if ( resp.forms.length === 0 ) {
           this.habilitado = false;

@@ -26,7 +26,11 @@ export class FormsService {
 
 
 
-  getForms( pull: boolean = false) {
+  getForms( pull: boolean = false, fabrica?: string) {
+
+    const headers = new HttpHeaders({
+      'token': this.usuarioService.token
+    });
 
     if ( pull ) {
       this.paginaForms = 0;
@@ -34,7 +38,7 @@ export class FormsService {
 
     this.paginaForms ++;
 
-    return this.http.get<RespuestaForms>(`${ URL }/form/?pagina=${ this.paginaForms }`);
+    return this.http.get<RespuestaForms>(`${ URL }/form/?pagina=${ this.paginaForms }&fabrica=${fabrica}`, { headers });
   }
 
   getFormById( idForm: string ) {

@@ -4,12 +4,6 @@ import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
-import { UiServiceService } from './services/ui-service.service';
-import { OfficesPage } from './pages/offices/offices.page';
-import { PuedeDesactivar } from './guards/salir-ruta.guard';
-import { MagazinePage } from './pages/magazine/magazine.page';
-import { ProductionPage } from './pages/production/production.page';
-import { ServicesPage } from './pages/services/services.page';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +19,7 @@ export class AppComponent implements  OnDestroy, AfterViewInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private navCtrl: NavController,
+    private navCtrl: NavController
   ) {
     this.initializeApp();
 
