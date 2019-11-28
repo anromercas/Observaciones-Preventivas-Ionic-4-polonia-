@@ -5,6 +5,7 @@ import { RespuestaForms, Form } from '../pages/interfaces/interfaces';
 import { UsuarioService } from './usuario.service';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { QuestionService } from './question.service';
+import { IobservationService } from './iobservation.service';
 
 const URL = environment.url;
 
@@ -22,7 +23,8 @@ export class FormsService {
   constructor( private http: HttpClient,
                private usuarioService: UsuarioService,
                private fileTransfer: FileTransfer,
-               private questionService: QuestionService ) { }
+               private questionService: QuestionService,
+               private iobservationService: IobservationService ) { }
 
 
 
@@ -54,6 +56,19 @@ export class FormsService {
     });
   }
 
+  getFormsByUser() {
+    const headers = new HttpHeaders({
+      'token': this.usuarioService.token
+    });
+
+    return new Promise( resolve => {
+      this.http.get<RespuestaForms>(`${ URL }/form/getFormsByUser`, { headers })
+                                  .subscribe( async (resp: any) => {
+                                    resolve(resp.form);
+                                  });
+    });
+  }
+
   crearForm( form ) {
 
     const headers = new HttpHeaders({
@@ -63,8 +78,9 @@ export class FormsService {
     return new Promise( resolve => {
       this.http.post(`${ URL }/form`, form, { headers })
               .subscribe( (resp: any) => {
+              //  console.log('Crear Form', resp);
                 this.form = resp.form;
-                console.log(resp.form._id);
+              //  console.log(resp.form._id);
                 this.nuevoForm.emit( resp['form'] );
                 resolve(true);
               });
@@ -83,30 +99,28 @@ export class FormsService {
 
     const fileTransfer: FileTransferObject = this.fileTransfer.create();
 
-    fileTransfer.upload( img, `${ URL }/question/upload`, options )
-      .then( data => {
-        console.log(data);
-      }).catch( err => {
-        console.log('Error en carga ', err);
-      });
+    return fileTransfer.upload( img, `${ URL }/question/upload`, options );
+
   }
 
-  borrarUltimo() {
+  borrarUltimo(id?: string) {
     const headers = new HttpHeaders({
       'token': this.usuarioService.token
     });
 
-    const idForm = this.form._id;
+    const idForm = this.form._id || id;
 
     return new Promise( resolve => {
       this.http.delete(`${ URL }/form/?idForm=${ idForm }`, { headers })
               .subscribe( (resp: any) => {
-                console.log(resp);
+              //  console.log(resp);
                 if( resp['ok']) {
                   this.deleteForm.emit( resp['form'] );
-                  // borrar las preguntas asociadas a este form si las hubiera
+                  // borrar las preguntas y los initial observations asociadas a este form si las hubiera
                   this.questionService.borrarPreguntasDeUnForm( idForm );
-                  console.log('FormService', resp);
+                  this.iobservationService.borrarIObservationsDeUnForm( idForm );
+                //  console.log('FormService - Delete form', resp);
+                  this.form = resp;
                   resolve(true);
                 } else {
                   resolve(false);

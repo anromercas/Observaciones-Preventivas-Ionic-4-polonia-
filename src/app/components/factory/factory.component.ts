@@ -30,7 +30,7 @@ export class FactoryComponent implements OnInit {
         fabrica: this.factory
       }
     };
-    console.log(navigationExtras);
+  //  console.log(navigationExtras);
     this.router.navigate(['/main/tabs/tab1'], navigationExtras);
   }
 

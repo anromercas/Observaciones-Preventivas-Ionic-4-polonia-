@@ -5,7 +5,9 @@ export const PRODUCTION = [
         ok: null,
         comentario: '',
         img: [],
-        color: ''
+        color: '',
+        radioDisabled: false,
+        camaraDisabled: true
     },
     {
         texto: 'Goggles',
@@ -13,7 +15,9 @@ export const PRODUCTION = [
         ok: null,
         comentario: '',
         img: [],
-        color: ''
+        color: '',
+        radioDisabled: true,
+        camaraDisabled: true
     },
     {
         texto: 'Workplace / chair',
@@ -21,7 +25,9 @@ export const PRODUCTION = [
         ok: null,
         comentario: '',
         img: [],
-        color: ''
+        color: '',
+        radioDisabled: true,
+        camaraDisabled: true
     },
     {
         texto: 'Position at work / ergonomics',
@@ -29,7 +35,9 @@ export const PRODUCTION = [
         ok: null,
         comentario: '',
         img: [],
-        color: ''
+        color: '',
+        radioDisabled: true,
+        camaraDisabled: true
     },
     {
         texto: 'The order at the workplace',
@@ -37,7 +45,9 @@ export const PRODUCTION = [
         ok: null,
         comentario: '',
         img: [],
-        color: ''
+        color: '',
+        radioDisabled: true,
+        camaraDisabled: true
     },
     {
         texto: 'Electric current - hazards',
@@ -45,7 +55,9 @@ export const PRODUCTION = [
         ok: null,
         comentario: '',
         img: [],
-        color: ''
+        color: '',
+        radioDisabled: true,
+        camaraDisabled: true
     },
     {
         texto: 'Fire protection equipment - availability',
@@ -53,7 +65,9 @@ export const PRODUCTION = [
         ok: null,
         comentario: '',
         img: [],
-        color: ''
+        color: '',
+        radioDisabled: true,
+        camaraDisabled: true
     },
     {
         texto: 'Evacuation - a free path',
@@ -61,7 +75,9 @@ export const PRODUCTION = [
         ok: null,
         comentario: '',
         img: [],
-        color: ''
+        color: '',
+        radioDisabled: true,
+        camaraDisabled: true
     },
     {
         texto: 'First aid kit - access + proper equipment',
@@ -69,6 +85,8 @@ export const PRODUCTION = [
         ok: null,
         comentario: '',
         img: [],
-        color: ''
+        color: '',
+        radioDisabled: true,
+        camaraDisabled: true
     },
 ];

@@ -8,6 +8,8 @@
       <h3 text-wrap>{{ form.usuario.nombre }}</h3>
       <h5 text-wrap>{{ form.usuario.email }}</h5>
     </ion-label>
+
+    
   </ion-item>
 
 
@@ -29,6 +31,7 @@
   <ion-item lines="none">
     <ion-label text-wrap>
       Created: <b>{{ form.created | date: 'dd/MM/yyyy' }}</b>
+      Location: <b> {{ form.fabrica.nombre }} </b>
     </ion-label>
   </ion-item>
 
@@ -36,3 +39,6 @@
       <ion-icon slot="end" name="eye"></ion-icon> View Form
   </ion-button>
 </div>
+   <!--  <ion-button expand="full"  shape="round" color="danger" fill="outline" (click)="remove(form._id)">
+        <ion-icon  name="trash"></ion-icon>
+    </ion-button> -->

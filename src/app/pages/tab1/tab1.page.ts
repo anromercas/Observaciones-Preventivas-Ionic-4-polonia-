@@ -12,7 +12,7 @@ import { FactoryService } from '../../services/factory.service';
 export class Tab1Page implements OnInit{
 
   forms: Form[] = [];
-  preguntas: Pregunta[] = [];
+//  preguntas: Pregunta[] = [];
 
   fabrica: string;
 
@@ -30,7 +30,7 @@ export class Tab1Page implements OnInit{
     this.route.queryParams.subscribe( params => {
       if (this.router.getCurrentNavigation().extras.state) {
         let data = this.router.getCurrentNavigation().extras.state.fabrica;
-        console.log(data);
+      //  console.log(data);
         this.factoryService.factory = data;
         this.fabrica = data._id;
       }
@@ -62,7 +62,7 @@ export class Tab1Page implements OnInit{
 
     this.formsService.getForms( pull, this.fabrica )
     .subscribe( resp => {
-      console.log(resp);
+    //  console.log(resp);
       this.forms.push( ...resp.forms );
 
       if ( event ) {

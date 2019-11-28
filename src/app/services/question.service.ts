@@ -27,7 +27,7 @@ export class QuestionService {
     return new Promise( resolve => {
       this.http.get(`${ URL }/question/getQuestion?idQuestion=${ idQuestion }`, { headers })
                 .subscribe( async (resp: any) => {
-                  console.log(resp);
+                //  console.log(resp);
                   if( resp['ok']) {
                     resolve(resp.pregunta);
                   } else {
@@ -38,6 +38,7 @@ export class QuestionService {
     });
 
   }
+
 
   getQuestionByIdForm( idForm: string ) {
     const headers = new HttpHeaders({
@@ -51,13 +52,10 @@ export class QuestionService {
     const headers = new HttpHeaders({
       'token': this.usuarioService.token
     });
-    return this.http.post(`${ URL }/question/?form=${ formId }`, pregunta, { headers })
-                           /*  .subscribe( resp => {
-                              console.log(resp);
-                            }) */;
+    return this.http.post(`${ URL }/question/?form=${ formId }`, pregunta, { headers });
   }
 
-  modificarQuestion( pregunta: Pregunta ){
+  modificarQuestion( pregunta: Pregunta ) {
     const headers = new HttpHeaders({
       'token': this.usuarioService.token
     });
@@ -82,7 +80,7 @@ export class QuestionService {
     return new Promise( resolve => {
       this.http.delete(`${ URL }/question?idForm=${idForm}`, { headers })
                 .subscribe( async resp => {
-                  console.log( 'questionService', resp);
+                //  console.log( 'questionService - delete many', resp);
                   if( resp['ok'] ) {
                     resolve(true);
                   } else {
@@ -91,4 +89,5 @@ export class QuestionService {
                 });
     });
   }
+
 }

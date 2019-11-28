@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Form, Pregunta } from 'src/app/pages/interfaces/interfaces';
-/* import { QuestionService } from '../../services/question.service';
-import { FormsService } from '../../services/forms.service';
-import { NavController } from '@ionic/angular'; */
 import { Router } from '@angular/router';
+import { FormsService } from 'src/app/services/forms.service';
 
 
 @Component({
@@ -14,7 +12,7 @@ import { Router } from '@angular/router';
 export class FormComponent implements OnInit {
 
   @Input() form: Form = {};
-  @Input() preguntas: Pregunta = {};
+//  @Input() preguntas: Pregunta = {};
 
   slideSoloOpts = {
     allowSlideNext: false,
@@ -28,10 +26,9 @@ export class FormComponent implements OnInit {
 
 //  preguntas: Pregunta[] = [];
 
-  constructor(  /* private questionService: QuestionService,
-                private formService: FormsService,
-                private navCtrl: NavController, */
-                private router: Router ) { }
+  constructor(
+              private formService: FormsService,
+              private router: Router ) { }
 
   ngOnInit() {
   //  console.log(this.form.area);
@@ -47,6 +44,12 @@ export class FormComponent implements OnInit {
   viewForm( id: string ) {
     console.log(id);
     this.router.navigate(['view-form', id]);
+  }
+
+  remove(id: string) {
+
+    this.formService.borrarUltimo(id);
+
   }
 
 }

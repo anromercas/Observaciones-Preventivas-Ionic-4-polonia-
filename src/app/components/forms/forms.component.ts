@@ -9,7 +9,7 @@ import { Form, Pregunta } from '../../pages/interfaces/interfaces';
 export class FormsComponent implements OnInit {
 
   @Input() forms: Form[] = [];
-  @Input() preguntas: Pregunta[] = [];
+//  @Input() preguntas: Pregunta[] = [];
 
   constructor() { }
 

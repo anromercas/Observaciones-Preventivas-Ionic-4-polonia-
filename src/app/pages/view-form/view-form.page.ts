@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { QuestionService } from "src/app/services/question.service";
-import { Pregunta, Form } from '../interfaces/interfaces';
+import { Pregunta, Form, InitialObservation } from '../interfaces/interfaces';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormsService } from "../../services/forms.service";
 import { ModalController } from '@ionic/angular';
 import { ViewQuestionPage } from '../view-question/view-question.page';
+import { IobservationService } from '../../services/iobservation.service';
 
 @Component({
   selector: "app-view-form",
@@ -12,7 +13,10 @@ import { ViewQuestionPage } from '../view-question/view-question.page';
   styleUrls: ["./view-form.page.scss"]
 })
 export class ViewFormPage implements OnInit {
+
   preguntas: Pregunta[] = [];
+  iObservations: InitialObservation[];
+
   idForm = null;
   form: Form;
   idUsuarioForm: string;
@@ -24,7 +28,8 @@ export class ViewFormPage implements OnInit {
     private formService: FormsService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private iobservationService: IobservationService
   ) {}
 
   ngOnInit() {
@@ -34,6 +39,8 @@ export class ViewFormPage implements OnInit {
     this.getFormById();
 
     this.getQuestionByIdForm();
+
+    this.getObservationsByIdForm();
 
   }
 
@@ -56,6 +63,14 @@ export class ViewFormPage implements OnInit {
                       this.idUsuarioForm = resp.form.usuario;
                       this.areaForm = resp.form.area;
                     });
+  }
+
+  getObservationsByIdForm() {
+    this.iobservationService.getIObservationsByIdForm( this.idForm )
+                            .then( ( resp: any ) => {
+                              this.iObservations = resp;
+                              console.log(resp);
+                            });
   }
 
   getQuestionByIdForm() {

@@ -28,6 +28,8 @@ export interface Pregunta {
   form?: Form;
   color?: string;
   guardado?: boolean;
+  radioDisabled?: boolean;
+  camaraDisabled?: boolean;
 }
 
 export interface Usuario {
@@ -45,4 +47,12 @@ export interface Factory {
   nombre?: string;
   pais?: string;
   ciudad?: string;
+}
+
+export interface InitialObservation {
+  id?: string;
+  queVes?: string;
+  tipoRiesgo?: string;
+  img?: string;
+  form?: Form;
 }
